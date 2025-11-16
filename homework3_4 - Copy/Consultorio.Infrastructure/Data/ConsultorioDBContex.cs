@@ -1,0 +1,22 @@
+﻿using Consultorio.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using System.Data.Common;
+using Consultorio.Infrastructure.Context;
+
+namespace Consultorio.Infrastructure.Context
+
+{
+    public class ConsultorioDbContex:DbContext
+    {
+        public ConsultorioDbContex(DbContextOptions<ConsultorioDbContex> options) : base(options)
+        {
+        }
+        public DbSet<Medico> Medicos { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Medico>().HasIndex(m => m.Name).IsUnique();
+        }
+    }
+}

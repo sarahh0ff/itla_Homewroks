@@ -14,16 +14,7 @@ namespace Consultorio.Infrastructure.Repositories
                 _context = context;
             }
 
-        public async Task AddAsync(Medico medico)
-        {
-            await _context.Medicos.AddAsync(medico);
-        }
-
-        public async Task<IEnumerable<Medico>> GetAllAsync()
-        {
-            return await _context.Medicos.ToListAsync();
-        }
-        public async Task<IEnumerable<Medico>> GetAll()
+            public async Task<IEnumerable<Medico>> GetAll()
             {
                 return await _context.Medicos.ToListAsync();
             }

@@ -1,53 +1,56 @@
 ﻿using Consultorio.Application.Dtos;
-using Consultorio.Application.Service;
 using Consultorio.Domain.Entities;
-using Consultorio.Infrastructure.Context;
+using Consultorio.Domain.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Consultorio.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PacienteController : ControllerBase
-
-
+    public class MedicoController : ControllerBase
     {
-        private readonly ConsultorioDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public PacienteController(ConsultorioDbContext context)
+        public MedicoController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         [HttpPost("Create")]
-        public IActionResult Create([FromBody] Medicodto medicodto)
+        public async Task<IActionResult> Create([FromBody] Medicodto dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var medico = new Medico
             {
-                Name = medicodto.Name,
-                Lastname = medicodto.Lastname,
-                Especialidad = medicodto.Especialidad,
-                Email = medicodto.Email,
-                PhoneNumber = medicodto.PhoneNumber,
-                CedulaProfesional = medicodto.CedulaProfesional,
-                FechaContratacion = medicodto.FechaContratacion,
-                Gender = medicodto.Gender,
-                Address = medicodto.Address
+                Name = dto.Name,
+                Lastname = dto.Lastname,
+                Especialidad = dto.Especialidad,
+                Email = dto.Email,
+                PhoneNumber = dto.PhoneNumber,
+                CedulaProfesional = dto.CedulaProfesional,
+                FechaContratacion = dto.FechaContratacion,
+                Gender = dto.Gender,
+                Address = dto.Address,
+                CreatedAt = DateTime.UtcNow,
+                IsActive = true
             };
 
-            _context.Medicos.Add(medico);
-            _context.SaveChanges();
+            await _unitOfWork.Medicos.AddAsync(medico);
+            await _unitOfWork.SaveChangesAsync();
 
-            return Ok(new { id = medico.Id, message = "Médico creado exitosamente" });
+            return Ok(new
+            {
+                id = medico.Id,
+                message = "Médico creado exitosamente"
+            });
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var medicos = _context.Medicos.ToList();
+            var medicos = await _unitOfWork.Medicos.GetAllAsync();
             return Ok(medicos);
         }
     }

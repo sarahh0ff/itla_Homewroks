@@ -9,8 +9,5 @@ namespace Consultorio.Domain.Repository
         Task Add(Medico medico);
         Task Update(Medico medico);
         Task Delete(int id);
-        Task AddAsync(Medico medico);
-        Task<IEnumerable<Medico>> GetAllAsync();
-    
-}
+    }
 }

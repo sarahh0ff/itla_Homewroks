@@ -13,27 +13,23 @@ namespace Consultorio.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            
+ 
             builder.Services.AddDbContext<ConsultorioDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
-            
-            builder.Services.AddScoped<IMedicoRepository, MedicoRepository>();
-            
 
-            
-            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped<IMedicoRepository, MedicoRepository>();
 
             
             builder.Services.AddScoped<IMedicoService, MedicoService>();
-            
 
-            
+
+           
             builder.Services.AddControllers();
 
-            
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
