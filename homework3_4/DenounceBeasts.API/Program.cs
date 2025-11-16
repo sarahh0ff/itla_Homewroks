@@ -1,9 +1,10 @@
-using Microsoft.EntityFrameworkCore;
-using Consultorio.Infrastructure.Context;
-using Consultorio.Domain.Repository;
-using Consultorio.Infrastructure.Repositories;
+using Consultorio.API.Middleware;
 using Consultorio.Application.Contract;
 using Consultorio.Application.Service;
+using Consultorio.Domain.Repository;
+using Consultorio.Infrastructure.Context;
+using Consultorio.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Consultorio.API
 {
@@ -39,11 +40,14 @@ namespace Consultorio.API
 
             var app = builder.Build();
 
+
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseExceptionMiddleware();
 
             app.UseHttpsRedirection();
 
