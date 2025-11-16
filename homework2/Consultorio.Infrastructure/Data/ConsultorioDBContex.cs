@@ -1,4 +1,4 @@
-﻿using Consultorio.API.Models.Entities;
+﻿using Consultorio.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
 

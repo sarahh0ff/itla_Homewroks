@@ -1,9 +1,11 @@
-using Microsoft.AspNetCore.OpenApi;
 using Microsoft.EntityFrameworkCore;
+using Consultorio.Infrastructure.Context;
+using Consultorio.Infrastructure.Interface;
+using Consultorio.Infrastructure.Repositories;
+using Consultorio.Application.Contract;
+using Consultorio.Application.Service;
 
-
-namespace DenounceBeasts
-
+namespace Consultorio.API
 {
     public class Program
     {
@@ -11,27 +13,30 @@ namespace DenounceBeasts
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            IServiceCollection serviceCollection = builder.Services.AddDbContext<Dbcontext.ConsultorioDBContex>(options =>
+ 
+            builder.Services.AddDbContext<ConsultorioDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
-            // Add services to the container.
 
+            builder.Services.AddScoped<IMedicoRepository, MedicoRepository>();
+
+            
+            builder.Services.AddScoped<IMedicoService, MedicoService>();
+
+
+           
             builder.Services.AddControllers();
-         
 
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            //builder.Services.AddOpenApi();
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-                //app.MapOpenApi();
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
@@ -39,7 +44,6 @@ namespace DenounceBeasts
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

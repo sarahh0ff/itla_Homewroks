@@ -29,12 +29,7 @@ namespace DenounceBeasts.API.Controllers
                 Name = m.Name,
                 Lastname = m.Lastname,
                 Email = m.Email,
-                Address = m.Address,
-                Especialidad = m.Especialidad,
-                PhoneNumber = m.PhoneNumber,
-                CedulaProfesional = m.CedulaProfesional,
-                FechaContratacion = m.FechaContratacion,
-                Gender = m.Gender
+                
             }).ToList();
 
             return Ok(selecmedicos);
@@ -56,12 +51,7 @@ namespace DenounceBeasts.API.Controllers
                 Name = medico.Name,
                 Lastname = medico.Lastname,
                 Email = medico.Email,
-                Address = medico.Address,
-                Especialidad = medico.Especialidad,
-                PhoneNumber = medico.PhoneNumber,
-                CedulaProfesional = medico.CedulaProfesional,
-                FechaContratacion = medico.FechaContratacion,
-                Gender = medico.Gender
+              
             };
 
             return Ok(medicodto);
@@ -71,17 +61,13 @@ namespace DenounceBeasts.API.Controllers
         [HttpPost("Create")]
         public IActionResult Create([FromBody] Medicodto medicodto)
         {
-            var medico = new Medico
+            var medico = new Medicodto
             {
                 Name = medicodto.Name,
                 Lastname = medicodto.Lastname,
                 Especialidad = medicodto.Especialidad,
                 Email = medicodto.Email,
-                Address = medicodto.Address,
-                PhoneNumber = medicodto.PhoneNumber,
-                CedulaProfesional = medicodto.CedulaProfesional,
-                FechaContratacion = medicodto.FechaContratacion,
-                Gender = medicodto.Gender
+               
             };
 
             _context.Medicos.Add(medico);
@@ -103,12 +89,7 @@ namespace DenounceBeasts.API.Controllers
             medico.Name = medicodto.Name;
             medico.Lastname = medicodto.Lastname;
             medico.Email = medicodto.Email;
-            medico.Address = medicodto.Address;
             medico.Especialidad = medicodto.Especialidad;
-            medico.PhoneNumber = medicodto.PhoneNumber;
-            medico.CedulaProfesional = medicodto.CedulaProfesional;
-            medico.FechaContratacion = medicodto.FechaContratacion;
-            medico.Gender = medicodto.Gender;
 
             _context.Medicos.Update(medico);
             _context.SaveChanges();
