@@ -1,23 +1,21 @@
-﻿using Consultorio.API.Models.Entities;
-using DenounceBeasts.Dbcontext; 
+﻿using Consultorio.Application.Dtos;
+using DenounceBeasts.Dbcontext;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Consultorio.API.Models.Dtos;
 
-namespace DenounceBeasts.API.Controllers
+namespace DenounceBeasts.API.Controllers //estuve aqui
 {
     [ApiController]
     [Route("api/[Controller]")]
     public class MedicoController : ControllerBase
     {
-        private readonly ConsultorioDBContex _context;
+        private readonly ConsultorioDbContex _context;
 
-        public MedicoController(ConsultorioDBContex context)
+        public MedicoController(ConsultorioDbContex context)
         {
             _context = context;
         }
 
-        
+
         [HttpGet("List")]
         public IActionResult GetAllMedicos()
         {
@@ -29,13 +27,13 @@ namespace DenounceBeasts.API.Controllers
                 Name = m.Name,
                 Lastname = m.Lastname,
                 Email = m.Email,
-                
+
             }).ToList();
 
             return Ok(selecmedicos);
         }
 
-        
+
         [HttpGet("Details/{id}")]
         public IActionResult GetMedicoById(int id)
         {
@@ -51,13 +49,13 @@ namespace DenounceBeasts.API.Controllers
                 Name = medico.Name,
                 Lastname = medico.Lastname,
                 Email = medico.Email,
-              
+
             };
 
             return Ok(medicodto);
         }
 
-        
+
         [HttpPost("Create")]
         public IActionResult Create([FromBody] Medicodto medicodto)
         {
@@ -67,7 +65,7 @@ namespace DenounceBeasts.API.Controllers
                 Lastname = medicodto.Lastname,
                 Especialidad = medicodto.Especialidad,
                 Email = medicodto.Email,
-               
+
             };
 
             _context.Medicos.Add(medico);
@@ -76,7 +74,7 @@ namespace DenounceBeasts.API.Controllers
             return Ok(medico.Id);
         }
 
-        
+
         [HttpPut("Update/{id}")]
         public IActionResult Update(int id, [FromBody] Medicodto medicodto)
         {
@@ -97,7 +95,7 @@ namespace DenounceBeasts.API.Controllers
             return NoContent();
         }
 
-        
+
         [HttpDelete("Delete/{id}")]
         public IActionResult Delete(int id)
         {
