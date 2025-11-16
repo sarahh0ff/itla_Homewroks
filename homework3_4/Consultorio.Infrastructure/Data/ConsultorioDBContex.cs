@@ -4,9 +4,9 @@ using System.Data.Common;
 
 namespace DenounceBeasts.Dbcontext
 {
-    public class ConsultorioDBContex:DbContext
+    public class ConsultorioDbContex:DbContext
     {
-        public ConsultorioDBContex(DbContextOptions<ConsultorioDBContex> options) : base(options)
+        public ConsultorioDbContex(DbContextOptions<ConsultorioDbContex> options) : base(options)
         {
         }
         public DbSet<Medico> Medicos { get; set; }
