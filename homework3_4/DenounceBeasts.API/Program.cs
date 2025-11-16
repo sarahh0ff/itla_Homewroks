@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Consultorio.Infrastructure.Context;
-using Consultorio.Infrastructure.Interface;
+using Consultorio.Domain.Repository;
 using Consultorio.Infrastructure.Repositories;
 using Consultorio.Application.Contract;
 using Consultorio.Application.Service;

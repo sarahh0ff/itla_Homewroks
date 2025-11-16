@@ -6,10 +6,12 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
+using Consultorio.Infrastructure.Context;
 
 namespace Consultorio.Infrastructure.Context
 {
     public class ConsultorioDbContext : DbContext
+
     {
         public ConsultorioDbContext(DbContextOptions<ConsultorioDbContext> options)
             : base(options)

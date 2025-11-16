@@ -1,9 +1,9 @@
 ﻿    using Consultorio.Domain.Entities;
-    using Consultorio.Infrastructure.Interface;
     using Consultorio.Infrastructure.Context;
     using Microsoft.EntityFrameworkCore;
+    using Consultorio.Domain.Repository;
 
-    namespace Consultorio.Infrastructure.Repositories
+namespace Consultorio.Infrastructure.Repositories
     {
         public class MedicoRepository : IMedicoRepository
         {

@@ -1,7 +1,7 @@
 ﻿using Consultorio.Application.Dtos;
 using Consultorio.Application.Contract;
 using Consultorio.Domain.Entities;
-using Consultorio.Infrastructure.Interface;
+using Consultorio.Domain.Repository;
 
 namespace Consultorio.Application.Service;
 

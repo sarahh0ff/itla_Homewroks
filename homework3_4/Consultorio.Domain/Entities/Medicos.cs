@@ -1,13 +1,11 @@
 ﻿
 
-
-using Consultorio.Domain.Core.Consultorio.Domain.Core;
-
+using Consultorio.Domain.Core;  
 namespace Consultorio.Domain.Entities
 {
-    public class Medico: BaseEntity
+    public class Medico : BaseEntity
     {
-        public int Id { get; set; }
+        public new int Id { get; set; }
         public string Name { get; set; } = null!;
         public string Lastname { get; set; } = null!;
         public string Especialidad { get; set; } = null!;

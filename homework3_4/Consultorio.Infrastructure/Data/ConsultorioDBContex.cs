@@ -1,8 +1,10 @@
 ﻿using Consultorio.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
+using Consultorio.Infrastructure.Context;
 
-namespace DenounceBeasts.Dbcontext
+namespace Consultorio.Infrastructure.Context
+
 {
     public class ConsultorioDbContex:DbContext
     {
